@@ -1,0 +1,50 @@
+[project]
+name = "ai-logo-generator-studio"
+version = "0.9.7"
+description = "Plugin-host AI logo generator for Windows desktop — diffusion + vector pipeline, community plugins."
+readme = "CONTRIBUTING.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Studio Maintainers" }]
+keywords = ["ai", "logo", "generator", "diffusion", "vector", "plugins"]
+
+dependencies = [
+    "torch>=2.3",
+    "diffusers>=0.30",
+    "transformers>=4.44",
+    "Pillow>=10.3",
+    "numpy>=1.26",
+    "pydantic>=2.7",
+    "typer>=0.12",
+    "rich>=13.7",
+    "svglib>=1.5",
+    "cairosvg>=2.7",
+    "watchdog>=4.0",
+]
+
+[project.optional-dependencies]
+cuda = ["torch>=2.3"]
+cpu = ["torch>=2.3"]
+dev = ["pytest>=8.2", "pytest-asyncio>=0.23", "ruff>=0.5", "mypy>=1.10", "black>=24.4"]
+
+[project.scripts]
+logo-studio = "src.ai_logo_studio.__main__:app"
+
+[project.entry-points."ai_logo_studio.plugins"]
+svg_export = "src.plugins.svg_export.plugin:SVGExportPlugin"
+palette_lock = "src.plugins.palette_lock.plugin:PaletteLockPlugin"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
