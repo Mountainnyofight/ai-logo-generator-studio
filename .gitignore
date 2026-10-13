@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+*.log
+
+# Generated logo artifacts
+out/
+generated/
+*.spudvec
+*.logo.ai
+thumbnails/
+
+# Plugin drop-ins (local dev only)
+plugins/_local/
+
+# Model weights (fetched at runtime)
+models/weights/
+*.safetensors
+*.onnx
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
