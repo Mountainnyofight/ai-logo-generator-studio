@@ -1,0 +1,31 @@
+# Default generation pipeline. Stage order matters.
+[meta]
+name = "default"
+version = 3
+
+[stage.prompt_clean]
+enabled = true
+strip_trademarks = true
+max_tokens = 77
+
+[stage.diffuse]
+enabled = true
+model = "sdxl-logo-tuned-v4"
+steps = 28
+guidance = 6.5
+size = [1024, 1024]
+scheduler = "dpmpp_2m_karras"
+
+[stage.vectorize]
+enabled = true
+backend = "auto"        # auto | native_cpp | native_csharp | native_java | pure_python
+colors = 6
+simplify_tolerance = 0.8
+
+[stage.palette_lock]
+enabled = false
+palette = "config/palettes/studio_default.json"
+
+[stage.export]
+enabled = true
+formats = ["svg", "png", "pdf"]
