@@ -1,0 +1,25 @@
+# Native acceleration shims
+
+The vectorizer and rasterizer can hand off to a native backend when a shim
+is present next to this file. Discovery order: C++ -> C# -> Java.
+
+## C++ (fastest)
+
+    cl /LD /O2 /EHsc logo_vec.cpp /Fe:liblogo_vec.dll
+
+Exposes `int logo_vec_trace(const uint8_t* rgba, int w, int h, char* out_svg, int cap)`.
+
+## C# (Windows-only, pythonnet)
+
+    csc /target:library /out:LogoVec.dll logo_vec.cs
+
+Loaded via `clr.AddReference("LogoVec")`.
+
+## Java (cross-platform, py4j)
+
+    javac -d build LogoVec.java
+    java -cp build logo.LogoVec --port 25334 &
+
+Point `py4j` at the gateway port. Slower JNI hop than the C++ path.
+
+If none are present, the host falls back to `pure_python` and logs a notice.
