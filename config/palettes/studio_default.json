@@ -1,0 +1,13 @@
+{
+  "name": "studio_default",
+  "colors": [
+    { "hex": "#0B0B0F", "role": "ink" },
+    { "hex": "#F4F4F0", "role": "paper" },
+    { "hex": "#FF5C39", "role": "accent" },
+    { "hex": "#2B6CFF", "role": "primary" },
+    { "hex": "#12B886", "role": "success" },
+    { "hex": "#FFC94A", "role": "highlight" }
+  ],
+  "max_colors": 6,
+  "contrast_min": 4.5
+}
