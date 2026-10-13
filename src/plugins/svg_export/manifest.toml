@@ -1,0 +1,7 @@
+[plugin]
+name = "svg_export"
+version = "0.3.1"
+capabilities = ["post_vectorize"]
+author = "studio"
+requires = ["cairosvg"]
+api = 1
